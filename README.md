@@ -1,2 +1,2 @@
 # fcc
-freeecodecamp solutions
+coding exercises
