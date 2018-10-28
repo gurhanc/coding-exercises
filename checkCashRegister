@@ -1,0 +1,175 @@
+/* this is solution for one of the FreeCodeCamp challenge in algorithms section */
+function checkCashRegister(price, cash, cid) {
+  var change = {};
+  change.change = [];
+
+  // let's find the number of each unit in the drawer.
+
+  let penny = (cid[0][1] / 0.01);
+  let nickel = cid[1][1] / 0.05;
+  let dime = cid[2][1] / 0.1;
+  let quarter = cid[3][1] / 0.25;
+  let one = cid[4][1] / 1;
+  let five = cid[5][1] / 5;
+  let ten = cid[6][1] / 10;
+  let twenty = cid[7][1] / 20;
+  let oneHundred = cid[8][1] / 100;
+  let due = (cash - price).toFixed(2);
+
+  // check available cash starting from the largest unit.
+
+  if (Math.floor(due / 100) > 0) {
+    if (oneHundred >= Math.floor(due / 100)) {
+      change.change.push(["ONE HUNDRED", Math.floor(due / 100) * 100]);
+      oneHundred = (oneHundred - Math.floor(due / 100)).toFixed(2);
+      due = (due - Math.floor(due / 100) * 100).toFixed(2);
+    }
+    else if (oneHundred > 0) {
+      change.change.push(["ONE HUNDRED", Math.floor(oneHundred * 100)]);
+      due = (due - oneHundred * 100).toFixed(2);
+      oneHundred = 0;
+    }
+  }
+
+
+  if (Math.floor(due / 20) > 0) {
+    if (twenty >= Math.floor(due / 20)) {
+      change.change.push(["TWENTY", Math.floor(due / 20) * 20]);
+      twenty = (twenty - Math.floor(due / 20)).toFixed(2);
+      due = (due - Math.floor(due / 20) * 20).toFixed(2);
+    }
+    else if (twenty > 0) {
+      change.change.push(["TWENTY", Math.floor(twenty * 20)]);
+      due = (due - twenty * 20).toFixed(2);
+      twenty = 0;
+    }
+  }
+    
+
+  if (Math.floor(due / 10) > 0) {
+    if (ten >= Math.floor(due / 10)) {
+      change.change.push(["TEN", Math.floor(due / 10) * 10]);
+      ten = (ten - Math.floor(due / 10)).toFixed(2);
+      due = (due - Math.floor(due / 10) * 10).toFixed(2);
+    }
+    else if (ten > 0) {
+      change.change.push(["TEN", Math.floor(ten * 10)]);
+      due = (due - ten * 10).toFixed(2);
+      ten = 0;
+    }
+  }
+
+
+  if (Math.floor(due / 5) > 0) {
+    if (five >= Math.floor(due / 5)) {
+      change.change.push(["FIVE", Math.floor(due / 5) * 5]);
+      five = (five - Math.floor(due / 5)).toFixed(2);
+      due = (due - Math.floor(due / 5) * 5).toFixed(2);
+    }
+    else if (five > 0) {
+      change.change.push(["FIVE", Math.floor(five * 5)]);
+      due = (due - five * 5).toFixed(2);
+      five = 0;
+    }
+  }
+
+
+  if (Math.floor(due / 1) > 0) {
+    if (one >= Math.floor(due / 1)) {
+      change.change.push(["ONE", Math.floor(due / 1) * 1]);
+      one = (one - Math.floor(due / 1)).toFixed(2);
+      due = (due - Math.floor(due / 1) * 1).toFixed(2);
+    }
+    else if (one > 0) {
+      change.change.push(["ONE", Math.floor(one * 1)]);
+      due = (due - one * 1).toFixed(2);
+      one = 0;
+    }
+  }
+
+
+  if (Math.floor(due / 0.25) > 0) {
+    if (quarter >= Math.floor(due / 0.25)) {
+      
+      change.change.push(["QUARTER", Math.floor(due / 0.25) * 0.25]);
+      quarter = (quarter - Math.floor(due / 0.25)).toFixed(2);
+      due = (due - Math.floor(due / 0.25) * 0.25).toFixed(2);
+    }
+    else if (quarter > 0) {
+      change.change.push(["QUARTER", Math.floor(quarter * 0.25)]);
+      due = (due - quarter * 0.25).toFixed(2);
+      quarter = 0;
+    }
+  }
+
+
+  if (Math.floor(due / 0.1) > 0) {
+    if (dime >= Math.floor(due / 0.1)) {
+      change.change.push(["DIME", Math.floor(due / 0.1) * 0.1]);
+      dime = (dime - Math.floor(due / 0.1)).toFixed(2);
+      due = (due - Math.floor(due / 0.1) * 0.1).toFixed(2);
+    }
+    else if (dime > 0) {
+      change.change.push(["DIME", Math.floor(dime * 0.1)]);
+      due = (due - dime * 0.1).toFixed(2);
+      dime = 0;
+    }
+  }
+
+
+  if (Math.floor(due / 0.05) > 0) {
+    if (nickel >= Math.floor(due / 0.05)) {
+      change.change.push(["NICKEL", Math.floor(due / 0.05) * 0.05]);
+      nickel = (nickel - Math.floor(due / 0.05)).toFixed(2);
+      due = (due - Math.floor(due / 0.05) * 0.05).toFixed(2);
+    }
+    else if (nickel > 0) {
+      change.change.push(["NICKEL", Math.floor(nickel * 0.05)]);
+      due = due - nickel * 0.05;
+      nickel = 0;
+    }
+  }
+
+
+  if (Math.floor(due / 0.01) > 0) {
+    if (penny >= Math.floor(due / 0.01)) {
+      change.change.push(["PENNY", Math.floor(due / 0.01) * 0.01]);
+      penny = (penny - Math.floor(due / 0.01)).toFixed(2);
+      due = (due - Math.floor(due / 0.01) * 0.01).toFixed(2);
+    }
+    else if (penny > 0) {
+      change.change.push(["PENNY", Math.floor(penny * 0.01)]);
+      due = (due - penny * 0.01).toFixed(2);
+      penny = 0;
+    }
+  }
+
+  /* check due is paid and set status accordingly */
+  if (due != 0) {
+    change["status"] = "INSUFFICIENT_FUNDS";
+    change.change = [];
+    return change;
+  }
+  else if (oneHundred == 0 && twenty == 0 && ten == 0 && five == 0 && one == 0 && quarter == 0 && dime == 0 && nickel == 0 && penny == 0 ) {
+    change["status"] = "CLOSED";
+    change.change = cid;
+    return change;
+  }
+  else {
+    change["status"] = "OPEN";
+    return change;
+  }
+}
+
+// Example cash-in-drawer array:
+// [["PENNY", 1.01],
+// ["NICKEL", 2.05],
+// ["DIME", 3.1],
+// ["QUARTER", 4.25],
+// ["ONE", 90],
+// ["FIVE", 55],
+// ["TEN", 20],
+// ["TWENTY", 60],
+// ["ONE HUNDRED", 100]]
+
+console.log(checkCashRegister(19.5, 20, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]));
