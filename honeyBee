@@ -1,0 +1,79 @@
+import math
+
+"""
+This code tries to minimize the path to honey which is the greatest
+joy for bees. Problem is highly complex and below code needs to be improved
+such that all paths should find but not in brute force.
+"""
+
+def cellsCoordinates(R):  # returns a dictionary: (cell id: coordinates=(x,y))
+    coordinateList = []
+    cellNumbersList = [i for i in
+                       range(1,
+                             (int((math.pow(R, 3))) - int((math.pow((R - 1), 3))) + 1))]  # defines the number of cells
+    i = z = 0
+    for y in range(1, int(R + 1)):
+        i += 1
+        for x in range(1, int(R + i)):
+            coordinateList.append((x, y))
+    for y in range(int(R + 1), int(2 * R)):
+        z -= 1
+        for x in range(1, int(2 * R - 2 + 1)):
+            coordinateList.append((x, y))
+    cellsCoordinateDict = dict(zip(cellNumbersList, coordinateList))
+    return cellsCoordinateDict
+
+
+def findAdjacentCells(currentCellID, cellsCoordinateDict):  # finds the adjacent cells where ant may move to
+    currentCoordinateX, currentCoordinateY = cellsCoordinateDict[currentCellID]
+    possibleNextCoordinate = [((currentCoordinateX - 1), (currentCoordinateY - 1)),
+                              ((currentCoordinateX - 1), currentCoordinateY),
+                              ((currentCoordinateX + 1), currentCoordinateY),
+                              (currentCoordinateX, (currentCoordinateY - 1)),
+                              (currentCoordinateX, (currentCoordinateY + 1)),
+                              ((currentCoordinateX + 1), (currentCoordinateY + 1))]
+    for coordinate in possibleNextCoordinate:
+        if coordinate not in cellsCoordinateDict.values():
+            possibleNextCoordinate.remove(coordinate)
+    return possibleNextCoordinate
+
+
+def calcDistance(antCoordinate, honeyCoordinate):  # calculates the distance between ant and honey
+    distance = math.sqrt(math.pow(antCoordinate[0] - honeyCoordinate[0], 2) +
+                         math.pow(antCoordinate[1] - honeyCoordinate[1], 2))
+    return distance
+
+
+def decideNextMove(currentCellID, honeyCellID, waxList, cellsCoordinateDict):
+    distances = []
+    nextID = currentCellID
+    possibleMoves = findAdjacentCells(currentCellID, cellsCoordinateDict)
+    honeyCoordinate = cellsCoordinateDict[honeyCellID]
+    for move in possibleMoves:
+        if move not in waxList:
+            distances.append(calcDistance(move, honeyCoordinate))
+    for id, coordinate in cellsCoordinateDict.items():
+        if coordinate == min(distances):
+            nextID = id
+            break
+    return nextID
+
+
+def main():  # returns the number of cells passed till honey or No if it's impossible
+    R, N, currentCellID, honeyCellID, X = 6, 6, 1, 45, 11
+    waxIDs = [15, 16, 17, 19, 26, 27, 52, 53, 58, 65, 74]
+    cellNumber = 0
+    cellsCoordinateDict = cellsCoordinates(R)
+    antCoordinate = cellsCoordinateDict[currentCellID]
+    honeyCoordinate = cellsCoordinateDict[honeyCellID]
+    while calcDistance(antCoordinate, honeyCoordinate) > 0 and cellNumber <= N:
+        currentCellID = decideNextMove(currentCellID, honeyCellID, waxIDs, cellsCoordinateDict)
+        antCoordinate = cellsCoordinateDict[currentCellID]
+        cellNumber += 1
+    if calcDistance(antCoordinate, honeyCoordinate) == 0:
+        return cellNumber
+    else:
+        return No
+
+
+print(main())
