@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /* this is solution for one of the FreeCodeCamp challenge in algorithms section */
 function checkCashRegister(price, cash, cid) {
   var change = {};
