@@ -3,7 +3,7 @@ import math
 """
 This code tries to minimize the path to honey which is the greatest
 joy for bees. Problem is highly complex and below code needs to be improved
-such that all paths should find but not in brute force.
+such that all paths should been found but not in brute force.
 """
 
 def cellsCoordinates(R):  # returns a dictionary: (cell id: coordinates=(x,y))
