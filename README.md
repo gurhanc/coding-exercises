@@ -1,2 +1,2 @@
-# fcc
+# coding exercises
 coding exercises
