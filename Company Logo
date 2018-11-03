@@ -1,0 +1,13 @@
+#!/bin/python3
+import sys
+import operator
+if __name__ == "__main__":
+    s = input().strip()
+    myDict = dict()
+    for i in s:
+        x = s.count(i)
+        myDict[i] = x
+    sorted_dict = sorted(myDict.items(), key=operator.itemgetter(0))
+    sorted_dict_final= sorted(sorted_dict, key=operator.itemgetter(1), reverse=True)
+    for i in range(3):
+        print(" ".join(map(str,sorted_dict_final[i])))
