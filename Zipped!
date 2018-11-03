@@ -1,0 +1,10 @@
+number_of_students,number_of_grades = list(map(int,input().strip().split()))
+grades_list = []
+for i in range(number_of_grades):
+    grades_list.append(list(input().strip().split()))
+combined_list = list(zip(*grades_list))
+for i in combined_list:
+    sum = 0
+    for x in i:
+        sum += float(x)
+    print(sum/number_of_grades)
