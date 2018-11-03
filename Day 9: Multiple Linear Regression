@@ -1,0 +1,19 @@
+from sklearn import linear_model
+n,sample_size = list(map(int,input().strip().split()))  # n is the number of variable in the multiple regression and sample_size is the sample used in the multiple regression
+x = []  # sample values used in the regression
+y = []  # result of sample values used in the regression
+for _ in range(sample_size):
+    sample = list(map(float,input().strip().split()))
+    x.append(sample[:-1])
+    y.append(sample[-1])
+lm = linear_model.LinearRegression()
+lm.fit(x,y)
+a = lm.intercept_
+b = lm.coef_
+test_size = int(input())  # the number of sample we will predict the result of them
+for i in range(test_size):
+    sum = a
+    s = list(map(float,input().strip().split()))
+    for i in range(n):
+        sum += b[i]*s[i]
+    print(round(sum,2))
