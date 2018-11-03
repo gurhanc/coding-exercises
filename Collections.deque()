@@ -1,0 +1,15 @@
+from collections import deque
+number_of_commands = int(input())
+d = deque()
+for i in range(number_of_commands):
+    entry = input().strip().split()
+    command = entry[0]
+    if command == "append":
+        d.append(entry[1])
+    elif command == "appendleft":
+        d.appendleft(entry[1])
+    elif command == "pop":
+        d.pop()
+    else:
+        d.popleft()
+print(" ".join(d))
