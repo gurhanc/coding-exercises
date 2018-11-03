@@ -1,0 +1,58 @@
+if __name__ == '__main__':
+    s = str(input())
+    0 < len(s) < 1000
+    a=0
+    b=0
+    c=0
+    d=0
+    e=0
+    for i in s:
+        if i.isalnum():
+            a = True
+            break
+        else:
+            continue
+    if a == True:
+        print("True")
+    else:
+        print("False")
+    for i in s:
+        if i.isalpha():
+            b = True
+            break
+        else:
+            continue
+    if b == True:
+        print("True")
+    else:
+        print("False")
+    for i in s:
+        if i.isdigit():
+            c = True
+            break
+        else:
+            continue
+    if c == True:
+        print("True")
+    else:
+        print("False")
+    for i in s:
+        if i.islower():
+            d = True
+            break
+        else:
+            continue
+    if d == True:
+        print("True")
+    else:
+        print("False")
+    for i in s:
+        if i.isupper():
+            e = 1
+            break
+        else:
+            continue
+    if e == 1:
+        print("True")
+    else:
+        print("False")
