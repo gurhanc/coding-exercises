@@ -1,0 +1,7 @@
+import re
+pattern = r"([A-Za-z0-9])\1+" # matches repeating alphanumeric characters
+m = re.search(pattern,input())
+if m == None:
+    print("-1")
+else:
+    print(m.group(1))
