@@ -1,0 +1,14 @@
+#!/bin/python3
+import sys
+def migratoryBirds(n, ar):
+    max = 0
+    type = 0
+    for i in range(1,6):
+        if ar.count(i) > max:
+            max = ar.count(i)
+            type = i
+    return type
+n = int(input().strip())
+ar = list(map(int, input().strip().split(' ')))
+result = migratoryBirds(n, ar)
+print(result)
