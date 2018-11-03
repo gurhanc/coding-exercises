@@ -1,0 +1,5 @@
+mean_a, mean_b = list(map(float,input().strip().split()))
+cost_a = 160 + 40*(mean_a**2+mean_a)
+cost_b = 128 + 40*(mean_b**2+mean_b)
+print(round(cost_a,3))
+print(round(cost_b,3))
