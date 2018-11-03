@@ -1,0 +1,8 @@
+n,k = list(map(int,input().strip().split()))
+prices = list(map(int,input().strip().split()))
+anna_charge = int(input())
+anna_real_charge = (sum(prices) - prices[k]) // 2
+if anna_real_charge == anna_charge:
+    print("Bon Appetit")
+else:
+    print(anna_charge-anna_real_charge)
