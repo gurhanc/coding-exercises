@@ -1,0 +1,26 @@
+#!/bin/python3
+import sys
+def countingValleys(n, s):
+    valleyCount = 0
+    inValley = False
+    seaList = [0]
+    seaLevel = 0
+    for step in s:
+        if step == "U":
+            seaLevel += 1
+            seaList.append(seaLevel)
+        else:
+            seaLevel -= 1
+            seaList.append(seaLevel)
+    for location in seaList:
+        if location < 0:
+            inValley = True
+        elif location == 0 and inValley == True:
+            inValley = False
+            valleyCount += 1
+    return valleyCount  
+if __name__ == "__main__":
+    n = int(input().strip())
+    s = input().strip()
+    result = countingValleys(n, s)
+    print(result)
