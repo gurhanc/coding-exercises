@@ -1,0 +1,9 @@
+import re
+n = int(input())
+for i in range(n):
+    z = input().strip()
+    try: 
+        re.compile(z)
+        print("True")
+    except: 
+        print("False")
