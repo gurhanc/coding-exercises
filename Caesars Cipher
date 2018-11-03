@@ -1,0 +1,17 @@
+function rot13(str) { // LBH QVQ VG!
+  let alphbt = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X", "Y","Z"];
+  str = str.split("");
+  let re = /[A-Z]/g;  /* checks alphanumeric characters */
+  for (let i=0;i<str.length;i++) {
+    if (str[i].match(re) != null) {
+      let index = alphbt.indexOf(str[i]);
+      index = (index + 13) % 26;
+      str[i] = alphbt[index];
+    }
+  }
+  console.log(str.join(""))
+  return str.join("");
+}
+
+// Change the inputs below to test
+rot13("SERR CVMMN!");
