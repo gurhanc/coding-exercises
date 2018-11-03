@@ -4,7 +4,7 @@ function checkCashRegister(price, cash, cid) {
   var change = {};
   change.change = [];
 
-  // let's find the number of each unit in the drawer.
+  // let's find the number of each unit in the drawer. 
 
   let penny = (cid[0][1] / 0.01);
   let nickel = cid[1][1] / 0.05;
