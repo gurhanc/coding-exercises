@@ -1,0 +1,13 @@
+a = int(input())
+b = input().split()
+c = int(input())
+d = input().split()
+x = set(b)
+y = set(d)
+first_diff = x.difference(y)
+second_diff = y.difference(x)
+final_set = first_diff.union(second_diff)
+result = list(final_set)
+final_result = sorted(result,key=int)
+for i in range(len(final_result)):
+    print(final_result[i])
