@@ -1,0 +1,5 @@
+boy, girl = list(map(float,input().strip().split()))
+boy_ratio = boy / (boy+girl)
+girl_ratio = 1 - boy_ratio
+result = 20*(boy_ratio ** 3)*(girl_ratio ** 3) + 15*(boy_ratio ** 4)*(girl_ratio ** 2) + 6*(boy_ratio ** 5)*(girl_ratio ** 1) + (boy_ratio ** 6)
+print("%.3f" % result)
