@@ -1,0 +1,6 @@
+first_integer = int(input())
+second_integer = float(input())
+myString = str(input())
+print(i + first_integer)
+print(d + second_integer)
+print(s + myString)
