@@ -1,0 +1,16 @@
+import numpy
+A = []
+B = []
+N,M = list(map(int,input().strip().split()))
+for i in range(N):
+    A.append(list(map(int,input().strip().split())))
+for i in range(N):
+    B.append(list(map(int,input().strip().split())))
+array_A = numpy.array(A)
+array_B = numpy.array(B)
+print(numpy.add(array_A,array_B))
+print(numpy.subtract(array_A,array_B))
+print(numpy.multiply(array_A,array_B))
+print(array_A//array_B)
+print(numpy.mod(array_A,array_B))
+print(numpy.power(array_A,array_B))
