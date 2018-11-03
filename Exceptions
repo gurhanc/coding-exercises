@@ -1,0 +1,9 @@
+n = int(input())
+for i in range(n):
+    try:
+        a,b = list(map(int,input().strip().split()))
+        print(a//b)
+    except ValueError as b:
+        print("Error Code:",b)   
+    except ZeroDivisionError as e:
+        print("Error Code:",e)
