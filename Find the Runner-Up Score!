@@ -1,0 +1,12 @@
+if __name__ == '__main__':
+    n = int(input())
+    arr = list(map(int, input().split()))
+    global runnerUp
+    runnerUp = -101
+    c = max(arr)
+    for i in range(n):
+        if arr[i] < c and arr[i] > runnerUp:
+            runnerUp = arr[i]
+        else:
+            continue
+    print(runnerUp)
