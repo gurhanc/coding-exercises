@@ -1,0 +1,19 @@
+function telephoneCheck(str) {
+  // Good luck!
+  let re1 = /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/;
+  let re2 = /^"("[0-9]{3}")"[0-9]{3}-[0-9]{4}$/;
+  let re3 = /^"("[0-9]{3}")"(\s)[0-9]{3}-[0-9]{4}$/;
+  let re4 = /^[0-9]{3}\s[0-9]{3}\s[0-9]{4}/;
+  let re5 = /^[0-9]{10}$/;
+  let re6 = /^1\s[0-9]{3}\s[0-9]{3}\s[0-9]{4}$/;
+  let re7 = /^1\s[0-9]{3}-[0-9]{3}-[0-9]{4}$/;
+  let re8 = /^1\s[(][0-9]{3}[)]\s[0-9]{3}-[0-9]{4}$/;
+  let re9 = /^[(][0-9]{3}[)][0-9]{3}[-][0-9]{4}$/;
+  let re10 = /^1[(][0-9]{3}[)][0-9]{3}-[0-9]{4}$/;
+  if (str.match(re1) == null && str.match(re2) == null &&str.match(re3) == null && str.match(re4) == null && str.match(re5) == null && str.match(re6) == null && str.match(re7) == null && str.match(re8) == null && str.match(re9) == null && str.match(re10) == null) {
+    return false;
+  }
+  return true;
+}
+
+telephoneCheck("555-555-5555");
