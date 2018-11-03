@@ -1,0 +1,48 @@
+let elem = document.getElementById("res");
+
+
+  function clickZero() {
+    elem.innerHTML +='0';
+  }
+  
+  function clickOne() {
+    elem.innerHTML +='1';
+  }
+  
+  function clickSum() {
+    if(elem.innerHTML.length!=0) {
+        elem.innerHTML +='+';
+       }
+  }  
+  
+  function clickSub() {
+    if(elem.innerHTML.length!=0){
+        elem.innerHTML +='-';
+       }
+  }
+
+  function clickMul() {
+    if(elem.innerHTML.length!=0){
+        elem.innerHTML +="*";
+       }
+  }
+
+  function clickDiv() {
+    if(elem.innerHTML.length!=0){
+        elem.innerHTML +="/";
+      }
+  }
+
+  function clickClr() {
+    elem.innerHTML = '';
+  }
+
+  function clickEql() {
+        var nums = /(\d+)/g;
+        var expr = elem.innerHTML;
+        expr = expr.replace(nums, function(match) {
+                return parseInt(match, 2);
+            })
+        elem.innerHTML = eval(expr).toString(2);
+        return elem.innerHTML;   
+      }
