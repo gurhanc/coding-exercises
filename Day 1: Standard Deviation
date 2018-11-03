@@ -1,0 +1,10 @@
+n = int(input())
+sum = 0
+nominator = 0
+myList = list(map(int,input().strip().split()))
+for i in range(n):
+    sum += myList[i]
+mean = sum/n
+for i in range(n):
+    nominator += (myList[i]-mean) ** 2
+print("%.1f" % ((nominator/n)**(0.5)))  #standard deviation
