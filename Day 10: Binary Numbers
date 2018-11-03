@@ -1,0 +1,14 @@
+#!/bin/python3
+import sys
+n = int(input().strip())
+mybinary = bin(n)[2:]
+n1 = 0
+n2 = 0
+length = len(mybinary)
+for i in range(length):
+    if mybinary[i] == "1":
+        n1 += 1
+    elif mybinary[i] == "0":
+        if n1 != 0:
+            n2,n1 = n1,0
+print(max(n1,n2))
