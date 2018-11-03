@@ -1,0 +1,17 @@
+def wrapper(f):
+    def fun(l):
+        for n,i in enumerate(l):
+            if len(i) == 13:
+                i = "".join(i[0:3])+" "+"".join(i[3:8])+" "+"".join(i[8:])
+                l[n] = i
+            elif len(i) == 12:
+                i = "+"+"".join(i[0:2])+" "+"".join(i[2:7])+" "+"".join(i[7:])
+                l[n] = i
+            elif len(i) == 11:
+                i = "+91 "+"".join(i[1:6])+" "+"".join(i[6:])
+                l[n] = i
+            else: 
+                i = "+91 "+"".join(i[0:5])+" "+"".join(i[5:])
+                l[n] = i
+        f(l)
+    return fun
