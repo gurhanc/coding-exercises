@@ -1,0 +1,6 @@
+defect,batch_size = list(map(int,input().strip().split()))
+defect = defect / 100
+first_result = 45*((defect)**2)*((1-defect)**8) + 10*(defect)*((1-defect)**9) + ((1-defect)**10)
+second_result = 45*(((defect)**2)*((1-defect)**8)) + 1 - first_result
+print("%.3f" % first_result)
+print("%.3f" % second_result)
