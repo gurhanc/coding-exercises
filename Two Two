@@ -1,0 +1,20 @@
+def is_power(a):
+    n = 0
+    while 2**n < a:
+        n += 1
+    if 2**n == a:
+        return "yes"
+    else:
+        return "no"
+T = int(input())
+for i in range(T):
+    x = input().strip()
+    l = len(x)
+    count = 0
+    for i in range(l):
+        for b in range(i+1,l+1):
+            if is_power(int(x[i:b])) == "yes" and x[i:i+1] != "0" :
+                count += 1
+            elif is_power(int(x[i:b])) == "no" or x[i:i+1] == "0" :
+                pass
+    print(count)
