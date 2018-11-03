@@ -1,0 +1,2 @@
+def get_attr_number(node):
+    return sum([len(elem.items()) for elem in tree.iter()])
