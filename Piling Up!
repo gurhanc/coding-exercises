@@ -1,0 +1,22 @@
+from collections import deque
+t = int(input()) # number of test cases
+for i in range(t):
+    minimum = 99999999999999999
+    pile = False
+    length = int(input())   # number of cubes
+    cubes = deque(map(int,input().strip().split()))    # cubes sidelengths
+    for i in range(length):
+        if max(cubes[0],cubes[-1]) <= minimum:
+            minimum = max(cubes[0],cubes[-1])
+            if minimum == cubes[0]:
+                pile = True
+                cubes.popleft()
+            else:
+                pile = True
+                cubes.pop()
+        else:
+            pile = False
+            print("No")
+            break     
+    if pile == True:
+        print("Yes")
