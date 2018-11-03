@@ -1,0 +1,48 @@
+m = int(input())
+grid = [] 
+for i in range(0, m): 
+    grid.append(input().strip())
+for i in range(m):
+    for j in range(m):
+        if(i != j):
+            if('p' in grid[i] and 'm' in grid[j]):
+                if(j > i):
+                    for l in range(j-i):
+                        print('UP')
+                    for p in range(m):
+                        for q in range(m):
+                            if(p != q):
+                                if(p > q):
+                                    if('p' in grid[i][p] and 'm' in grid[j][q]):
+                                        for k in range(p-q):
+                                            print('RIGHT')
+                                if(p < q):
+                                    if('p' in grid[i][p] and 'm' in grid[j][q]):
+                                        for k in range(q-p):
+                                            print('LEFT')
+                if(j < i):
+                    for l in range(i-j):
+                        print('DOWN')
+                    for p in range(m):
+                        for q in range(m):
+                            if(p != q):
+                                if(p > q):
+                                    if('p' in grid[i][p] and 'm' in grid[j][q]):
+                                        for k in range(p-q):
+                                            print('RIGHT')
+                                if(p < q):
+                                    if('p' in grid[i][p] and 'm' in grid[j][q]):
+                                        for k in range(q-p):
+                                            print('LEFT')
+        if(i == j):
+            for p in range(m):
+                        for q in range(m):
+                            if(p != q):
+                                if(p > q):
+                                    if('p' in grid[i][p] and 'm' in grid[j][q]):
+                                        for k in range(p-q):
+                                            print('RIGHT')
+                                if(p < q):
+                                    if('p' in grid[i][p] and 'm' in grid[j][q]):
+                                        for k in range(q-p):
+                                            print('LEFT')
