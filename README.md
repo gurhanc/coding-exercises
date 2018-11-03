@@ -1,2 +1,2 @@
 # coding exercises
-coding exercises
+various coding exercises from hackerrank, codewars, freecodecamp
