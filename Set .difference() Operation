@@ -1,0 +1,6 @@
+x,y = (int(input()),input().split())
+a,b = (int(input()),input().split())
+q = set(y)
+z = set(b)
+diff = q.difference(z)
+print(len(diff))
