@@ -1,0 +1,14 @@
+from itertools import combinations_with_replacement, combinations
+myString = input().strip().split()
+word = myString[0]
+myList = list(word)
+x = len(myList)
+myList.sort()
+z = ""
+for i in myList:
+    z += i
+myList = list(combinations_with_replacement(z,int(myString[1])))
+myList.sort()
+length = len(myList)
+for i in range(length):
+    print("".join(myList[i]))
