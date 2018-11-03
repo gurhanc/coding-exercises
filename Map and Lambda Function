@@ -1,0 +1,19 @@
+cube = lambda x: x ** 3 # complete the lambda function 
+
+def fibonacci(n):
+    # return a list of fibonacci numbers
+    empty_list = []
+    lsti = [0]
+    lst = [0,1]
+    global x,y
+    x,y = 0,1
+    if n == 0:
+        return empty_list
+    if n == 1:
+        return lsti
+    if n == 2:
+        return lst
+    while len(lst) <= n-1:
+        x, y = y, x+y
+        lst.append(y)
+    return lst
