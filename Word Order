@@ -1,0 +1,15 @@
+from collections import OrderedDict
+n = int(input())
+counter = 0
+myDict = OrderedDict()
+for i in range(n):
+    x = input()
+    if x not in myDict:
+        myDict[x] = 1
+    else:
+        myDict[x] += 1
+for key,value in myDict.items():
+    counter += 1
+print(counter)
+for key,value in myDict.items():
+    print(value,end=" ")
