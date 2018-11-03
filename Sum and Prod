@@ -1,0 +1,8 @@
+import numpy
+N,M = map(int,(input().strip().split()))
+myList = []
+for i in range(N):
+    myList.append(list(map(int,input().strip().split())))
+myArray = numpy.array(myList)
+x = numpy.sum(myArray, axis = 0)
+print(numpy.prod(x)) 
