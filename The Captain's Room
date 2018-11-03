@@ -1,0 +1,6 @@
+N = int(input())
+room_numbers = list(map(int,input().split()))
+x = sum(room_numbers)
+a = set(room_numbers)
+y = sum(a)
+print( int((N * y - x) / (N-1)) ) 
