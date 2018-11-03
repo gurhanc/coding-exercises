@@ -1,0 +1,22 @@
+#!/bin/python3
+
+import sys
+
+def solve(grades):
+    finalGrades = []
+    for y in grades:
+        if y < 38:
+            finalGrades.append(y)
+        elif y % 5 > 2:
+            finalGrades.append(y + (5 - y % 5))
+        else:
+            finalGrades.append(y)
+    return finalGrades
+n = int(input().strip())
+grades = []
+grades_i = 0
+for grades_i in range(n):
+   grades_t = int(input().strip())
+   grades.append(grades_t)
+result = solve(grades)
+print ("\n".join(map(str, result)))
