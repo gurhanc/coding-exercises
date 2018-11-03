@@ -1,0 +1,11 @@
+class Calculator:
+    def initfunc(self,n,p):
+        self.n = n
+        self.p = p
+    def power(self,n,p):
+        e = "n and p should be non-negative"
+        if n >= 0 and p >= 0:
+            x = n ** p
+            return x
+        else:
+            return e
