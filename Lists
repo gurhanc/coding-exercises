@@ -1,0 +1,30 @@
+if __name__ == '__main__':
+    lst = []
+    n = int(input())
+    for entry in range(n):
+        command_line = input().split()
+        if len(command_line) == 3:
+            command = command_line[0]
+            q = int(command_line[1])
+            z = int(command_line[2])
+            if command == "insert":
+                lst.insert(q,z)
+        elif len(command_line) == 2:
+            command = command_line[0]
+            q = int(command_line[1])
+            if command == "remove":
+                lst.remove(q)
+            elif command == "append":
+                lst.append(q)  
+        elif len(command_line)  == 1:
+            command = command_line[0] 
+            if command == "sort":
+                lst.sort(key=int)
+            elif command == "pop" and len(lst) == 0:
+                pass
+            elif command == "pop":
+                lst.pop()
+            elif command == "reverse":
+                lst.reverse()
+            else:
+                print(lst)            
