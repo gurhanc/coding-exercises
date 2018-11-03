@@ -1,0 +1,17 @@
+m = int(input())
+r, c = list(map(int,input().strip().split()))
+grid = [] 
+for i in range(0, m): 
+    grid.append(input().strip())
+for a in range(m):
+    for b in range(m):
+        if "p" in grid[a][b]:
+            p_coord_x, p_coord_y = a, b
+if p_coord_y == c and p_coord_x < r:
+    print("UP")
+elif p_coord_y == c and p_coord_x > r:
+    print("DOWN")
+elif p_coord_y < c:
+    print("LEFT")
+else:
+    print("RIGHT")
