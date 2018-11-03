@@ -1,0 +1,24 @@
+y = int(input())  # number of distinct elements
+distinct_list = list(map(int,input().strip().split()))
+frequency_list = list(map(int,input().strip().split()))
+new_list = []
+for i in range(y):
+    for z in range(frequency_list[i]):
+        new_list.append(distinct_list[i])
+n = len(new_list)
+x = new_list
+x.sort()
+if n%2 == 0:  # n is even
+    if n%4 == 0:
+        Q1 = int((x[n//4-1]+x[n//4])/2)
+        Q3 = int((x[(3*n)//4-1]+x[(3*n)//4])/2) 
+    else:
+        Q1 = int((x[n//4]))         
+        Q3 = int((x[(3*n)//4]))   
+elif (n-1)%4 ==0:  # n is odd 
+    Q1 = int((x[(n-1)//4-1]+x[(n-1)//4])/2) 
+    Q3 = int((x[(3*(n-1))//4]+x[(3*(n-1))//4+1])/2)
+else:
+    Q1 = int((x[(n+1)//4-1])) 
+    Q3 = int((x[(3*(n+1))//4-1]))
+print("%.1f" % (Q3-Q1))
