@@ -1,0 +1,9 @@
+import math 
+AB = float(input())
+BC = float(input())
+AC = (AB ** 2 + BC ** 2) ** (0.5)
+MC = AC / 2
+BM = MC
+x = (BM ** 2 + BC ** 2 - MC ** 2) / (2*BM*BC)
+rad = math.acos(x)
+print(str(round(math.degrees(rad)))+"°")
