@@ -1,0 +1,9 @@
+def arrays(arr):
+    # complete this function
+    # use numpy.array 
+    rlist = []
+    b = list(arr)
+    for i in reversed(b):
+        rlist.append(i)
+    d = numpy.array(rlist,float)
+    return d
