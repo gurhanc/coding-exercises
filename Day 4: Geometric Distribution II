@@ -1,0 +1,4 @@
+nominator,denominator = list(map(int,input().strip().split()))
+defect_probability = nominator / denominator
+first_defect_inspection = int(input())
+print(round(1 - ((1-defect_probability)**first_defect_inspection),3))
