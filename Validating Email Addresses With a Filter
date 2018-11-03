@@ -1,0 +1,14 @@
+import re
+def fun(s):
+    try:
+        myList = []
+        x = s.split("@")
+        username = x[0]
+        y = x[1].split(".")
+        websitename = y[0]
+        extension = y[1]
+        if re.match(r"^[A-Za-z0-9-_]{1,}$",username) and re.match(r"^[A-Za-z0-9]{1,}$",websitename) and len(extension) <= 3:
+            myList.append(username+"@"+websitename+"."+extension)
+        return myList
+    except:
+        pass
