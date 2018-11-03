@@ -1,0 +1,9 @@
+import re
+pattern = r"^[+-]?\d*\.{1}\d+$"
+n = int(input())
+for i in range(n):
+    myString = input()
+    if re.match(pattern,myString) == None:
+        print("False")
+    else:
+        print("True")
