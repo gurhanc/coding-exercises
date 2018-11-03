@@ -1,0 +1,21 @@
+#!/bin/python3
+
+import sys
+
+def breakingRecords(score):
+    high = low = score[0]
+    high_record, low_record = 0, 0
+    for y in score:
+        if y > high:
+            high_record += 1
+            high = y
+    for z in score:
+        if z < low:
+            low_record += 1
+            low = z
+    return (high_record),(low_record)
+if __name__ == "__main__":
+    n = int(input().strip())
+    score = list(map(int, input().strip().split(' ')))
+    result = breakingRecords(score)
+    print (" ".join(map(str, result)))
