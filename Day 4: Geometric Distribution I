@@ -1,0 +1,5 @@
+nominator,denominator = list(map(int,input().strip().split()))
+defect_probability = nominator / denominator
+first_defect_inspection = int(input())
+result = ((1-defect_probability)**(first_defect_inspection-1))*defect_probability
+print("%.3f" % result)
