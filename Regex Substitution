@@ -1,0 +1,6 @@
+n = int(input())
+for i in range(n):
+    x = input()
+    while ' && ' in x or ' || ' in x:
+        x = x.replace(" && ", " and ").replace(" || ", " or ")
+    print(x)
