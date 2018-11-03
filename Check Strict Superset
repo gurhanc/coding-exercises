@@ -1,0 +1,14 @@
+A = set(map(int,input().strip().split()))
+superset = True
+n = int(input())
+for i in range(n):
+    input_set = set(map(int,input().strip().split()))
+    if input_set.difference(A) != set() or input_set == A:
+        superset = False
+        break
+    else:
+        pass
+if superset == False:
+    print("False")
+else:
+    print("True")
