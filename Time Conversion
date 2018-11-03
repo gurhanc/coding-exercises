@@ -1,0 +1,26 @@
+#!/bin/python3
+import sys
+def timeConversion(s):
+    s = s.split(":")
+    myList = list(s[-1])
+    if myList[-2] == "P" and int(s[0]) < 12:
+        hour = str(int(s[0]) + 12)
+        s[0] = hour
+        minute = ["".join(myList[0:2])]
+        combined_hour = s[0:2] + minute
+    elif myList[-2] == "P" and int(s[0]) >= 12:
+        minute = ["".join(myList[0:2])]
+        combined_hour = s[0:2] + minute
+    else:
+        hour = int(s[0]) % 12
+        if hour < 10:
+            hour = "0"+str(hour)
+        else:
+            hour = str(hour)
+        s[0] = hour
+        minute = ["".join(myList[0:2])]
+        combined_hour = s[0:2] + minute
+    return (":".join(combined_hour))      
+s = input().strip()
+result = timeConversion(s)
+print(result)
