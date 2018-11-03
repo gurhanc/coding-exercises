@@ -1,0 +1,6 @@
+import numpy
+myList = []
+N = int(input())
+for i in range(N):
+    myList.append(list(map(float,input().strip().split())))
+print(numpy.linalg.det(myList))
