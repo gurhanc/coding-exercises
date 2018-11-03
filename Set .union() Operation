@@ -1,0 +1,6 @@
+n1 = int(input())
+set_english = set(map(int,input().strip().split()))
+n2 = int(input())
+set_french = set(map(int,input().strip().split()))
+whole_set = set_english.union(set_french)
+print(len(whole_set))
