@@ -1,0 +1,6 @@
+n1 = int(input())
+set_english = set(map(int,input().strip().split()))
+n2 = int(input())
+set_french = set(map(int,input().strip().split()))
+common_set = set_english.intersection(set_french)
+print(len(common_set))
