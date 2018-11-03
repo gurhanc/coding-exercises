@@ -1,0 +1,25 @@
+nominator = 0
+number_of_values = int(input())  # the size of each list which was equal to 10 in the sample tc
+first_list = list(map(float,input().strip().split()))
+second_list = list(map(float,input().strip().split()))
+# we should get the rank of each element in each list
+myDict_first = dict()
+myDict_second = dict()
+myDict_first_sorted = dict()
+myDict_second_sorted = dict()
+for x,y in enumerate(first_list):
+    myDict_first[x+1] = y
+for x,y in enumerate(second_list):
+    myDict_second[x+1] = y
+first_list.sort()
+second_list.sort()
+for x,y in enumerate(first_list):
+    myDict_first_sorted[y] = x+1
+for x,y in enumerate(second_list):
+    myDict_second_sorted[y] = x+1
+for z in range(1,number_of_values+1,1):
+    nominator += (myDict_first_sorted[myDict_first[z]] - myDict_second_sorted[myDict_second[z]]) ** 2
+nominator = nominator * 6
+denominator = number_of_values * (number_of_values ** 2 -1)
+corrcoef = 1 - nominator / denominator
+print(round(corrcoef,3))
