@@ -1,0 +1,22 @@
+n,mod = map(int,input().strip().split())
+array = []
+max = 0
+for i in range(n):
+    array.append([int(x) for x in input().strip().split()[1:]])
+possible_combinations=[[]]
+for x in array:
+    t = []
+    for y in x:
+        for i in possible_combinations:
+            t.append(i+[y])
+    possible_combinations = t
+for i in possible_combinations:
+    sum = 0
+    for x in i:
+        sum += x**2
+    sum = sum%mod
+    if sum > max:
+        max = sum
+    else:
+        pass
+print(max) 
