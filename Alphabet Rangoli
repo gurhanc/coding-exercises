@@ -1,0 +1,32 @@
+def print_rangoli(size):
+    myList = []
+    mySecondList2 = []
+    for i in range(size):
+        myList.append(chr(ord("a") + size-1-i))
+        myList.sort()
+        sorted_myList = myList[:]
+        del sorted_myList[0]
+        myList.sort(reverse=True)
+        reverse_sorted_myList = myList[:]
+        final_List = reverse_sorted_myList + sorted_myList
+        myRangoli = "-".join(final_List)
+        left_lines = "-" * (2*size-2-2*i)
+        right_lines = "-" * (2*size-2-2*i)
+        myFinalRangoli_upper = left_lines + myRangoli + right_lines
+        print(myFinalRangoli_upper)
+    mySecondList = final_List[:]
+    mySet = set(mySecondList)
+    mySecondList2 = list(mySet)
+    for i in range(size-1):
+        mySecondList2.remove(chr(ord("a") + i))
+        mySecondList2.sort()
+        sorted_myList2 = mySecondList2[:]
+        del sorted_myList2[0]
+        mySecondList2.sort(reverse=True)
+        reverse_sorted_myList2 = mySecondList2[:]
+        final_List2 = reverse_sorted_myList2 + sorted_myList2
+        mySecondRangoli = "-".join(final_List2)
+        left_second_lines = "-" * (2 + 2*i)
+        right_second_lines = "-" * (2 + 2*i)
+        myFinalRangoli_lower = left_second_lines + mySecondRangoli + right_second_lines
+        print(myFinalRangoli_lower)     
