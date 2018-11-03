@@ -1,0 +1,26 @@
+xList = []
+yList = []
+for i in range(5):
+    x,y = list(map(float,input().strip().split()))
+    xList.append(x)
+    yList.append(y)
+meanX = sum(xList) / 5
+meanY = sum(yList) / 5
+for i in range(5):
+    xList[i] -= meanX  # we subtracted mean from each element from the list
+    yList[i] -= meanY  # we subtracted mean from each element from the list
+# let's calculate the regression slope now
+sum1 = 0  # this is the sum(x*y)
+for i in range(5):
+    sum1 += (xList[i])*(yList[i])
+sum2 = sum(xList)*sum(yList) 
+nominator = 5*sum1-sum2  # we calculated the nominator in the formula
+sum3 = 0
+for i in range(5):
+    sum3 += xList[i] ** 2
+sum4 = sum(xList) ** 2
+denominator = 5*sum3-sum4
+slope = nominator / denominator
+# let's calculate the intercept now
+intercept = meanY - slope*meanX
+print(round(intercept+slope*80,3))
