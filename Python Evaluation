@@ -1,0 +1,2 @@
+string_variable = input()
+eval(string_variable)
