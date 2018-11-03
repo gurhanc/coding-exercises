@@ -1,0 +1,13 @@
+def count_substring(string, sub_string):
+    global myCount
+    global x,y
+    myCount = 0
+    x = len(sub_string)
+    y = len(string)
+    for i in range(y-x+1):
+        a = string[i:i+x]
+        if a == sub_string:
+            myCount += 1
+        else:
+            pass       
+    return myCount
