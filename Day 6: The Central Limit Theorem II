@@ -1,0 +1,7 @@
+import math
+total_ticket = int(input())
+eager_student = int(input())
+mean_eager = float(input())
+std_eager = float(input())
+cdf = (1+ math.erf((total_ticket - (mean_eager*eager_student)) / (std_eager*math.sqrt(eager_student)*math.sqrt(2)))) * 0.5
+print(round(cdf,4))
