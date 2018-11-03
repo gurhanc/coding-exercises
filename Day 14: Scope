@@ -1,0 +1,3 @@
+def computeDifference(self):
+        self.maximumDifference = max(a)-min(a)   # elements is a private instance variable and it's array and so we can sort it
+        # maximumDifference is a public instance variable so we should define it as self.maximumDifference    
