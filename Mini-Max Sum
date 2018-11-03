@@ -1,0 +1,15 @@
+#!/bin/python3
+
+import sys
+
+def miniMaxSum(arr):
+    total = sum(arr)
+    maximum = max(arr)
+    minimum = min(arr)
+    maximum4 = total - minimum
+    minimum4 = total - maximum
+    print(minimum4,maximum4,)
+
+if __name__ == "__main__":
+    arr = list(map(int, input().strip().split(' ')))
+    miniMaxSum(arr)
