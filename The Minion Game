@@ -1,0 +1,17 @@
+import re
+def minion_game(string):
+    kevin_Score = 0
+    stuart_Score = 0
+    vowels = ["A","E","I","O","U"]
+    myLength = len(string)
+    for i in range(myLength):
+        if s[i] in vowels:
+            kevin_Score += myLength - i
+        else:
+            stuart_Score += myLength - i
+    if kevin_Score > stuart_Score:
+        print("Kevin "+str(kevin_Score))
+    elif stuart_Score > kevin_Score:
+        print("Stuart "+str(stuart_Score))
+    else:
+        print("Draw")
