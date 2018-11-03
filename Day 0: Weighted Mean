@@ -1,0 +1,9 @@
+n = int(input())
+nominator = 0
+denominator = 0
+myNumbers = list(map(int,input().strip().split()))
+myWeights = list(map(int,input().strip().split()))
+for i in range(n):
+    nominator += myNumbers[i] * myWeights[i]
+    denominator += myWeights[i]
+print("{0:.1f}".format(nominator/denominator))
