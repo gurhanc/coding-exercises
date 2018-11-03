@@ -1,0 +1,11 @@
+def capitalize(string):
+    myList = list(string)
+    x = len(myList)
+    myList[0] = myList[0].upper()
+    for i in range(1,x+1):
+        if myList[i-1] == " " :
+            myList[i] = myList[i].upper()
+        else:
+            pass
+    b = "".join(myList)
+    return b
