@@ -1,0 +1,12 @@
+from itertools import combinations
+N = int(input())
+count = 0
+letters = input().strip().split()
+combination = int(input())
+letters_final = "".join(letters)
+myList = [''.join(x) for x in combinations(letters_final,combination)]
+all_combinations = len(myList)
+for i in myList:
+    if "a" in i:
+        count += 1
+print(count / all_combinations)
