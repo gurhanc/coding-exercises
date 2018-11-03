@@ -1,0 +1,7 @@
+from itertools import permutations
+word,size = input().strip().split()
+size = int(size)
+myList = list(permutations(word,size))
+myList.sort()
+for i in myList:
+    print("".join(i))
