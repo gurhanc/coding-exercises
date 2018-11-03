@@ -1,0 +1,12 @@
+import re
+pattern1 = r"^[A-Za-z0-9]{10}$"   # checks there are 10 alphanumeric characters
+pattern2 = r"(?=(.*[A-Z]){2,})"  # checks there are two uppercase letters
+pattern3 = r"(?=(.*[0-9]){3,})"  # checks there are three digits
+pattern4 = r".*(.).*\1" # checks any character is repeated
+n = int(input())
+for i in range(n):
+    x = input()
+    if re.match(pattern1,x) == None or re.match(pattern2,x) == None or re.match(pattern3,x) == None or re.match(pattern4,x) != None:
+        print("Invalid")
+    else:
+        print("Valid")
