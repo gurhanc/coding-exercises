@@ -1,0 +1,8 @@
+import math
+maximum_weight = int(input())
+number_of_box = int(input())
+mean = int(input())
+std = int(input())
+total_mean = mean * number_of_box
+cdf = (1 + math.erf((maximum_weight - total_mean) / (std*math.sqrt(2)*math.sqrt(number_of_box)))) * 0.5
+print(round(cdf,4))
