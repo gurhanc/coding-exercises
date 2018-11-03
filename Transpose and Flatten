@@ -1,0 +1,8 @@
+import numpy
+N,M = list(map(int,input().strip().split()))
+myList = []
+for i in range(N):
+    myList.append(list(map(int,input().strip().split()))) 
+myArray = numpy.array(myList)
+print(numpy.transpose(myArray))
+print(myArray.flatten())
