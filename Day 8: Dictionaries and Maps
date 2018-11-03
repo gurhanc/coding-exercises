@@ -1,0 +1,13 @@
+n = int(input())
+phone_book = {}
+for i in range(n):
+    name,phone_number = input().strip().split()
+    phone_book[name] = phone_number
+while True:  
+    name = input().strip()
+    if name == "\n":
+        break
+    elif name in phone_book:
+        print(name+"="+phone_book[name])
+    else:
+        print("Not found")      
