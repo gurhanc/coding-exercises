@@ -1,0 +1,11 @@
+from itertools import combinations
+string,all_combinations = input().strip().split()
+all_combinations = int(all_combinations)
+string = list(string)
+string.sort()
+myFinalString = "".join(string)
+a = str(myFinalString.strip())
+for i in range(1,all_combinations+1):
+    final_List = list(combinations(a,i))
+    for i in final_List:
+        print("".join(i))
