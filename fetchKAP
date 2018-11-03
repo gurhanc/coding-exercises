@@ -118,4 +118,4 @@ def check_default():
 
 scheduler = BlockingScheduler()
 scheduler.add_job(check_default, 'interval', seconds=60)  # check_default function works at 60-second intervals
-scheduler.start()
+scheduler.start() 
