@@ -1,0 +1,12 @@
+import re
+pattern = r"\#[0-9A-Fa-f]{3,6}"
+pattern2 = r"^#"
+n = int(input())
+for i in range(n):
+    x = input().strip()
+    if re.match(pattern2,x):
+        pass
+    else:
+        y = re.findall(pattern,x)
+        if y:
+            print("\n".join(y))
