@@ -1,0 +1,9 @@
+from itertools import product
+whole_list = []
+A = list(map(int,input().strip().split()))
+B = list(map(int,input().strip().split()))
+whole_list.append(A)
+whole_list.append(B)
+all_combinations = list(product(*whole_list))
+for i in all_combinations:
+    print(i,end=" ")
