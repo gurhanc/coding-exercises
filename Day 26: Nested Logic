@@ -1,0 +1,14 @@
+day2,month2,year2 = list(map(int,input().strip().split()))
+day1,month1,year1 = list(map(int,input().strip().split()))
+fixed=0
+if year2>year1:
+    fee=10000
+elif year2<year1:
+    fee=0
+elif month2>month1:
+    fee=500*(month2-month1)
+elif day2>day1:
+    fee=15*(day2-day1) 
+else:
+    fee=0
+print(fee)
