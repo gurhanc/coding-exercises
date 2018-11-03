@@ -1,0 +1,20 @@
+#!/bin/python3
+import sys
+import itertools
+def pickingNumbers(a):
+    max = 0
+    mySet = set(a)
+    for i in mySet:
+        c = a.count(i)
+        d = a.count(i-1)
+        c = c + d
+        if c > max:
+            max = c
+    return max
+        
+    
+if __name__ == "__main__":
+    n = int(input().strip())
+    a = list(map(int, input().strip().split(' ')))
+    result = pickingNumbers(a)
+    print(result)
