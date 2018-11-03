@@ -1,0 +1,5 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+x,k = list(map(int,raw_input().strip().split()))
+polyn = raw_input().strip()
+a = eval(polyn)
+print(a == k) 
