@@ -1,0 +1,11 @@
+    def levelOrder(self,root):
+        myList = []
+        if root == None:
+            pass
+        else:
+            myList.append(root)
+            for y in myList:
+                if y:
+                    print(y.data,end=" ")
+                    myList.append(y.left)
+                    myList.append(y.right)
