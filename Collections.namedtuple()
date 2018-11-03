@@ -1,0 +1,10 @@
+from collections import namedtuple
+count = int(input())
+columns = " ".join(input().split())
+Mark = namedtuple("Mark",columns)
+sum = 0
+for i in range(count):
+    student = input().strip().split()
+    mark = Mark(*student)
+    sum += int(mark.MARKS)
+print(sum/count)
