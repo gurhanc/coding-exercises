@@ -1,0 +1,26 @@
+if __name__ == '__main__':
+    names = []
+    scores = []
+    runnersUps = []
+    global runnersUpScore 
+    for i in range(int(input())):
+        name = input()
+        names.append(name)
+        score = float(input())
+        scores.append(score)
+    minimumScore = min(scores)
+    runnersUpScore = 101
+    myZip = zip(names,scores)
+    myDict = dict(myZip)
+    for key, value in myDict.items():
+        if value > minimumScore and value <= runnersUpScore:
+            runnersUpScore = value
+        else:
+            continue
+    for key, value in myDict.items():
+        if value == runnersUpScore:
+            runnersUps.append(key)
+        else:
+            continue
+    for i in sorted(runnersUps):
+        print(i)
