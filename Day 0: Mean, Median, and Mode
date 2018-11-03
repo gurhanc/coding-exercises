@@ -1,0 +1,9 @@
+import numpy as np
+from scipy import stats
+n = int(input())
+myList = list(map(int,input().strip().split()))
+myArray = np.array(myList)
+print(np.average(myArray))
+print(np.median(myArray))
+m = stats.mode(myArray)[0]
+print(min(m))
