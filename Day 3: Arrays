@@ -1,0 +1,13 @@
+/**
+*   Return the second largest number in the array.
+*   @param {Number[]} nums - An array of numbers.
+*   @return {Number} The second largest number in the array.
+**/
+function removeDuplicateUsingSet(arr){
+    let unique_array = Array.from(new Set(arr))
+    return unique_array
+}
+function getSecondLargest(nums) {
+    nums.sort(function(a,b) {return b-a});
+    return removeDuplicateUsingSet(nums)[1]
+}
