@@ -1,0 +1,8 @@
+import math
+sample = float(input())
+mean = float(input())
+std = float(input())
+middle = float(input())
+zscore = float(input())
+print(round(mean-std*zscore/math.sqrt(sample),3))
+print(round(mean+std*zscore/math.sqrt(sample),3))
