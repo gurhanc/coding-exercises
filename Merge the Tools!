@@ -1,0 +1,15 @@
+def merge_the_tools(string, k):
+    my_String = list(string)
+    string_Length = len(my_String)
+    iteration_Number = string_Length // k
+    global u
+    u = 0
+    for i in range(iteration_Number):
+        myList = []
+        for y in range(k):
+            if my_String[y+u] not in myList:
+                myList.append(my_String[y+u])
+            else:
+                pass
+        print("".join(myList))
+        u += k
