@@ -1,0 +1,9 @@
+import numpy
+lst = []
+x,y = map(int,input().split())
+for i in range(x):
+    lst.append(list(map(int,input().split())))
+my_array = numpy.array(lst)
+print(numpy.mean(my_array,axis=1))
+print(numpy.var(my_array,axis=0))
+print(numpy.std(my_array))
