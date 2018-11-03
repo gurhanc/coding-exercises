@@ -1,0 +1,8 @@
+number_english = int(input())
+roll_english = set(map(int, input().strip().split()))
+number_french = int(input())
+roll_french = set(map(int, input().strip().split()))
+set1 = roll_english.symmetric_difference(roll_french)
+set2 = roll_french.symmetric_difference(roll_english)
+final_set = set1.union(set2)
+print(len(final_set))
