@@ -1,0 +1,16 @@
+n = int(input())
+A = set(map(int,input().strip().split()))
+for i in range(int(input())):
+    myList = list(input())
+    set1 = set(map(int,input().strip().split()))
+    command = myList[0]
+    number_elements = myList[-1]
+    if command == "i":
+        A.intersection_update(set1)
+    elif command == "u":
+        A.update(set1)
+    elif command == "s":
+        A.symmetric_difference_update(set1)
+    else:
+        A.difference_update(set1)
+print(sum(A))    
