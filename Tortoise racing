@@ -1,0 +1,10 @@
+import math
+def race(v1, v2, g):
+    if v1 >= v2:
+        return None
+    else:
+        total_seconds = math.floor(g / (v2 - v1) * 3600)
+        hour = math.floor(total_seconds / 3600)
+        minute = math.floor((total_seconds - hour * 3600) / 60)
+        second = math.floor(total_seconds - hour * 3600 - minute * 60)
+        return [hour, minute, second]
