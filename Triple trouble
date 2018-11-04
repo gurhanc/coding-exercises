@@ -1,0 +1,20 @@
+ef triple_double(num1, num2):
+    num1 = str(num1)
+    num2 = str(num2)
+    triples = []
+    doubles = []
+    triple_double = 0
+    for i in range(len(num1) - 2):
+        if num1[i] == num1[i+1] and num1[i] == num1[i+2]:
+            triples.append(num1[i])
+    for y in range(len(num2) - 1):
+        if num2[y] == num2[y+1]:
+            doubles.append(num2[y])
+    if triples is None or doubles is None:
+        return 0
+    for i in triples:
+        if i in doubles:
+            triple_double = 1
+            return 1
+    if triple_double == 0:
+        return 0
