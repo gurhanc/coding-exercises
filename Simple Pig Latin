@@ -1,0 +1,17 @@
+def pig_it(text):
+    lst = list(text.strip().split())
+    secondlst = []
+    for x in lst:
+        if len(x) == 1 and x not in("!", "?"):
+            x += "a"
+            x += "y"
+            secondlst.append(x)
+        elif x in ("!", "?"):
+            secondlst.append(x)
+        else:
+            x += x[0]
+            x = x[1:]
+            x += "a"
+            x += "y"
+            secondlst.append(x)
+    return " ".join(secondlst)
