@@ -1,0 +1,5 @@
+def disemvowel(string):
+    for i in string:
+        if i in ("a", "e", "i", "o", "u", "A", "E", "I", "O", "U"):
+            string = string.replace(i, "")
+    return string
