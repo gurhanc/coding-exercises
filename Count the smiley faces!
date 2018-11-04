@@ -1,0 +1,7 @@
+def count_smileys(arr):
+    valid_smiley = [":)", ":-)", ":-D", ":~)", ":~D", ";)", ";D", ";-)", ";-D", ";~)", ";~D", ":D"]
+    valid = 0
+    for smiley in arr:
+        if smiley in valid_smiley:
+            valid += 1
+    return valid #the number of valid smiley faces in array/list
