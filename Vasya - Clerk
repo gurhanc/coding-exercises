@@ -1,0 +1,19 @@
+def tickets(people):
+    twentyfive = people.count(25)
+    fifty = people.count(50)
+    hundred = people.count(100)
+    for i in people:
+        if i == 50:
+            if twentyfive > 0:
+                twentyfive -= 1
+            else:
+                return "NO"
+        elif i == 100:
+            if twentyfive > 0 and fifty > 0:
+                twentyfive -= 1
+                fifty -= 1
+            elif twentyfive >= 3:
+                twentyfive -= 3
+            else:
+                return "NO"
+    return "YES"
