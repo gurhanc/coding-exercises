@@ -1,0 +1,117 @@
+$(document).ready(function() {
+  let status = "SESSION";
+  let sessionMinutes = 25;
+  let breakMinutes = 5;
+  let minutes = 25;
+  let seconds = 0;
+  let pause = true
+  let stopStart;
+  
+  function countdown() {
+    if (status == "SESSION" && pause == false) {
+      if (seconds == 1 && minutes == 0) {
+        $("#beep")[0].play();
+        seconds--;
+      }
+      else if (seconds == 0 && minutes == 0) {
+        status = "BREAK";
+        $("#timer-label").html(status);
+        minutes = breakMinutes;
+        $("#time-left").html(minutes+":0"+seconds);
+      }
+      else if (seconds == 0 && minutes >= 1) {
+        seconds = (seconds + 59) % 60;
+        minutes--;
+      }
+      else {
+      seconds--;
+      }
+      if (seconds < 10) {
+       $("#time-left").html(minutes+":0"+seconds); 
+      }
+      else {
+       $("#time-left").html(minutes+":"+seconds);
+      }
+      }
+    else if (status == "BREAK" && pause == false) {
+      if (seconds == 1 && minutes == 0) {
+        $("#beep")[0].play();
+        seconds--;
+      }
+      else if (seconds == 0 && minutes == 0) {
+        status = "SESSION";
+        $("#timer-label").html(status);
+        minutes = sessionMinutes;
+        $("time-left").html(minutes+":0"+seconds);
+      }
+      else if (seconds == 0 && minutes >= 1) {
+        seconds = (seconds + 59) % 60;
+        minutes--;
+      }
+      else {
+      seconds--;
+      }
+      if (seconds < 10) {
+       $("#time-left").html(minutes+":0"+seconds); 
+      }
+      else {
+       $("#time-left").html(minutes+":"+seconds);
+      }
+      }
+    }
+    
+  
+  $("#session-increment").click(function() {
+    clearInterval(stopStart);
+    seconds = 0;
+    if (sessionMinutes<60) {
+      sessionMinutes++;
+      minutes = sessionMinutes;
+      $("#session-length").html(sessionMinutes);
+      $("#time-left").html(sessionMinutes+":00")
+    } 
+    });
+  
+  $("#session-decrement").click(function() {
+    clearInterval(stopStart);
+    seconds = 0;
+    if (sessionMinutes > 1) {
+      sessionMinutes--;
+      minutes = sessionMinutes;
+      $("#session-length").html(sessionMinutes);
+      $("#time-left").html(sessionMinutes+":00")
+    }
+    });
+  
+  $("#break-increment").click(function() {
+    clearInterval(stopStart);
+    seconds = 0;
+    if (breakMinutes < 60) {
+      breakMinutes++;
+      minutes = breakMinutes;
+      $("#break-length").html(breakMinutes);
+    }
+  });
+  
+  $("#break-decrement").click(function() {
+    clearInterval(stopStart);
+    seconds = 0;
+    if (breakMinutes > 1) {
+      breakMinutes--;
+      minutes = breakMinutes;
+      $("#break-length").html(breakMinutes);
+    }
+  });
+  
+  $("#time-left").click(function() {
+    if (pause == true) {
+      stopStart = setInterval(countdown,1000);
+      pause = false
+    }
+    else {
+      pause = true;
+      clearInterval(stopStart);
+    }
+  });
+  
+});
