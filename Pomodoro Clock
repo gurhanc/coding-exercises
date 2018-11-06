@@ -1,3 +1,5 @@
+/usr/bin/jsc
+
 $(document).ready(function() {
   let status = "SESSION";
   let sessionMinutes = 25;
