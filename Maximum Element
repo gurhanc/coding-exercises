@@ -1,0 +1,20 @@
+maxElem = 0
+myList = []
+finalList = []
+n = int(input())
+for i in range(n):
+    myList.append(list(map(int,input().strip().split())))
+for query in myList:
+    if query[0] == 1:
+        finalList.append(query[1])
+        if query[1] > maxElem:
+            maxElem = query[1]
+    elif query[0] == 2:
+        deletedElem = finalList.pop()
+        if maxElem == deletedElem:
+            if len(finalList) > 0:
+                maxElem = max(finalList)
+            else:
+                maxElem = 0
+    else:
+        print(maxElem) 
