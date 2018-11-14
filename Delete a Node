@@ -1,0 +1,22 @@
+# Complete the deleteNode function below.
+
+#
+# For your reference:
+#
+# SinglyLinkedListNode:
+#     int data
+#     SinglyLinkedListNode next
+#
+#
+def deleteNode(head, position):
+    node = head
+    if position == 0:
+        head = head.next
+        node = head
+        node = node.next
+        return head
+    else:
+        for i in range(position-1):
+            node = node.next
+        node.next = node.next.next
+        return head
