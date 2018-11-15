@@ -1,0 +1,9 @@
+def reversePrint(head):
+    if head:
+        stack = []
+        node = head
+        while node:
+            stack.append(node.data)
+            node = node.next
+        while stack:
+            print(stack.pop(),end="\n")
