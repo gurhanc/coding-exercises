@@ -1,0 +1,17 @@
+def countApplesAndOranges(s, t, a, b, apples, oranges):
+    applesPosition = []
+    orangesPosition = []
+    countApple = 0
+    countOrange = 0
+    for apple in apples:
+        applesPosition.append(a+apple)
+    for orange in oranges:
+        orangesPosition.append(b+orange)
+    for apple in applesPosition:
+        if s <= apple <= t:
+            countApple += 1
+    for orange in orangesPosition:
+        if s <= orange <= t:
+            countOrange += 1
+    print(countApple)
+    print(countOrange)
