@@ -1,0 +1,39 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+from collections import Counter
+
+# Complete the checkMagazine function below.
+def checkMagazine(magazine, note):
+    flag = False
+    cntNote = Counter()
+    ctnMagazine = Counter()
+    for word in note:
+        cntNote[word] += 1
+    for word in magazine:
+        ctnMagazine[word] += 1
+    for key,value in dict(cntNote).items():
+        if value > ctnMagazine[key]:
+            flag = True
+    if flag == True:
+        print("No")
+    else:
+        print("Yes")
+
+
+if __name__ == '__main__':
+    mn = input().split()
+
+    m = int(mn[0])
+
+    n = int(mn[1])
+
+    magazine = input().rstrip().split()
+
+    note = input().rstrip().split()
+
+    checkMagazine(magazine, note)
