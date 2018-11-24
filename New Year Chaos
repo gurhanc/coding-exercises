@@ -1,0 +1,45 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the minimumBribes function below.
+def minimumBribes(q):
+    swapped = 0 
+    chaos = False
+    for i in range(len(q)):
+        innerBribe = 0
+        bribed = -1
+        cons = 0
+        for t in range(len(q)-i-1):
+            if q[t] > q[t+1]:
+                q[t], q[t+1] = q[t+1], q[t]
+                swapped += 1
+                innerBribe += 1
+                if bribed == t:
+                    bribed = t+1
+                    cons += 1
+                    if cons > 2:
+                        chaos = True
+                else:
+                    bribed = t+1
+                    cons = 1
+        if innerBribe == 0: # no need for further loops since all elements in array in order
+            break
+    if chaos == True:
+        print("Too chaotic")
+    else:
+        print(swapped)
+
+if __name__ == '__main__':
+    t = int(input())
+
+    for t_itr in range(t):
+        n = int(input())
+
+        q = list(map(int, input().rstrip().split()))
+
+        minimumBribes(q)
