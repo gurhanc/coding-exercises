@@ -1,0 +1,93 @@
+import math
+
+
+class Chess:
+    """
+    this function below returns a chess board in dictionary
+    with colors of squares
+    {(A,1): "white, (A,2): "black",...}
+    """
+    def makeBoard():
+        chessRows = [1,2,3,4,5,6,7,8]
+        chessColumns = ["A","B","C","D","E","F","G","H"]
+        chessGrid = []
+        chessColor = {}
+        color = "white"
+        for c in chessColumns:
+            for r in chessRows:
+                chessGrid.append((c,r))
+        start = -8
+        for position in range(8):
+            start += 8
+            for index, column in enumerate(chessGrid[start:start+8]):
+                if position % 2 == 0 and index == 0:
+                    color = "black"
+                    chessColor[column] = color
+                elif position % 2 == 0 and index != 0:
+                    if color == "black":
+                        color = "white"
+                        chessColor[column] = color
+                    else:
+                        color = "black"
+                        chessColor[column] = color
+                elif position % 2 != 0 and index == 0:
+                    color = "white"
+                    chessColor[column] = color
+                else:
+                    if color == "black":
+                        color = "white"
+                        chessColor[column] = color
+                    else:
+                        color = "black"
+                        chessColor[column] = color
+        return chessColor
+
+
+def findMoves(currentSquare,targetSquare):
+    """
+    :param currentSquare:
+    :param targetSquare:
+    :return: if color of current and target square is different than return impossible
+            if current and target square are on the same line then one diagonal move enough
+            if they are not on the same line and colors are same (white or black) then
+            we can get the target square by at most 2 moves. We find crossing square at the
+            last two elif statements and return current square -- crossing square -- target square
+            Case 1	Case 2
+            y - x = (y1-x1)
+            y + x = (y2+x2)
+            =>
+            2y = (y1-x1) + (y2+x2)
+            2x = (y2+x2) - (y1-x1)
+            y + x = (y1+x1)
+            y - x = (y2-x2)
+            =>
+            2y = (y1+x1) + (y2-x2)
+            2x = (y1+x1) - (y2-x2)
+    """
+    chessColumns = ["A", "B", "C", "D", "E", "F", "G", "H"]
+    chessRows = [1, 2, 3, 4, 5, 6, 7, 8]
+    chessColor = Chess.makeBoard()
+    x_current, y_current = currentSquare
+    x_target, y_target = targetSquare
+    x_current = chessColumns.index(x_current) + 1
+    x_target = chessColumns.index(x_target) + 1
+    if chessColor[currentSquare] != chessColor[targetSquare]:
+        return "Impossible"
+    elif math.fabs(x_current-x_target) == math.fabs(y_current-y_target):
+        x_current = chessColumns[chessRows.index(x_current)]
+        x_target = chessColumns[chessRows.index(x_target)]
+        return 1, x_current, y_current, x_target, y_target
+    elif (int(((y_current-x_current) + (y_target+x_target)) / 2) in chessRows) and int(((y_current - x_current) - (y_target + x_target)) / 2) in chessRows:
+        y_crossing = int(((y_current - x_current) - (y_target + x_target)) / 2)
+        x_crossing = -int(((y_current-x_current) + (y_target+x_target)) / 2)
+        x_crossing = chessColumns[chessRows.index(x_crossing)]
+        x_current = chessColumns[chessRows.index(x_current)]
+        x_target = chessColumns[chessRows.index(x_target)]
+        return 2, x_current, y_current, x_crossing, y_crossing, x_target, y_target
+    elif (int(((y_current + x_current) - (y_target - x_target)) / 2) in chessRows) and int(((y_current+x_current) + (y_target-x_target)) / 2) in chessRows:
+        x_crossing = int(((y_current + x_current) - (y_target - x_target)) / 2)
+        y_crossing = int(((y_current+x_current) + (y_target-x_target)) / 2)
+        x_crossing = chessColumns[chessRows.index(x_crossing)]
+        x_current = chessColumns[chessRows.index(x_current)]
+        x_target = chessColumns[chessRows.index(x_target)]
+        return 2, x_current, y_current, x_crossing, y_crossing, x_target, y_target
