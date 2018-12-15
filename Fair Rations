@@ -1,4 +1,4 @@
-ef fairRations(B):
+def fairRations(B):
     oddsCount = 0
     loaf = 0
     oddsList = []
