@@ -1,0 +1,16 @@
+ef fairRations(B):
+    oddsCount = 0
+    loaf = 0
+    oddsList = []
+    for i in range(len(B)):
+        if B[i] % 2 != 0:
+            oddsList.append(i)
+            oddsCount += 1
+    if oddsCount % 2 == 1:
+        return "NO"
+    else:
+        y = 0
+        for i in range(int((len(oddsList)/2))):
+            loaf += (oddsList[y+i+1]-oddsList[y+i])*2
+            y += 1
+        return loaf
