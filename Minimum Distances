@@ -1,0 +1,35 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the minimumDistances function below.
+def minimumDistances(a):
+    minimum = -9999999
+    change = True
+    for i in range(len(a)):   
+        if i-a.index(a[i]) > 0 and a.index(a[i])-i > minimum:
+            change = False
+            minimum = a.index(a[i])-i
+    if change == True:
+        return -1
+    else:
+        return -1*minimum
+
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    a = list(map(int, input().rstrip().split()))
+
+    result = minimumDistances(a)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
