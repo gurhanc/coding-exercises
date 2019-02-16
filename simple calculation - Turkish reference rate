@@ -1,0 +1,40 @@
+import pandas as pd
+import numpy as np
+
+"TURKISH LIRA OVERNIGHT REFERENCE RATE CALCULATION"
+pd.options.mode.chained_assignment = None  # default='warn'
+
+"""
+we should filter rows based on four columns;
+  1) crossed trades
+  2) cancelled trades
+  3) özel işlem bildirimleri?
+  4) non-cleared trades
+"""
+df = pd.read_csv("20_20190118_S-NORMAL_REPN_T0-ON.csv",sep=";")
+df = df.sort_values(["TradeRate","TradeQty"], ascending =[True,True])
+totalQty = df["TradeQty"].sum()
+trimPercent = 0.15 # this can be changed
+lowerBound = totalQty*trimPercent
+upperBound = totalQty*(1-trimPercent)
+df['cumulativeQty'] = 0
+df["calcQty"] = 0
+df["cumulativeQty"][0] = df["TradeQty"][0]
+for index in range(1,len(df.index)):
+  df["cumulativeQty"][index] = df["cumulativeQty"][index-1] + df["TradeQty"][index]
+for index in range(len(df.index)):
+  if df["cumulativeQty"][index] >= lowerBound:
+    df["calcQty"][index] = df["cumulativeQty"][index] - lowerBound
+    lowercalcIndex = index
+    break
+for index in range(len(df.index)):
+  if df["cumulativeQty"][index] >= upperBound:
+    df["calcQty"][index] = df["cumulativeQty"][index] - upperBound
+    uppercalcIndex = index
+    break
+for index in range(len(df.index)):
+  if lowercalcIndex < index < uppercalcIndex:
+    df["calcQty"][index] = df["TradeQty"][index]
+df["calcTradedValue"] = df["calcQty"] * df["TradeRate"]
+trimmedMean = df["calcTradedValue"].sum() / df["calcQty"].sum()
+print(round(trimmedMean,4))
