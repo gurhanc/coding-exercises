@@ -1,40 +1,49 @@
 import pandas as pd
-import numpy as np
-
-"TURKISH LIRA OVERNIGHT REFERENCE RATE CALCULATION"
 pd.options.mode.chained_assignment = None  # default='warn'
-
-"""
-we should filter rows based on four columns;
-  1) crossed trades
-  2) cancelled trades
-  3) özel işlem bildirimleri?
-  4) non-cleared trades
-"""
-df = pd.read_csv("20_20190118_S-NORMAL_REPN_T0-ON.csv",sep=";")
-df = df.sort_values(["TradeRate","TradeQty"], ascending =[True,True])
-totalQty = df["TradeQty"].sum()
-trimPercent = 0.15 # this can be changed
-lowerBound = totalQty*trimPercent
-upperBound = totalQty*(1-trimPercent)
-df['cumulativeQty'] = 0
-df["calcQty"] = 0
-df["cumulativeQty"][0] = df["TradeQty"][0]
-for index in range(1,len(df.index)):
-  df["cumulativeQty"][index] = df["cumulativeQty"][index-1] + df["TradeQty"][index]
-for index in range(len(df.index)):
-  if df["cumulativeQty"][index] >= lowerBound:
-    df["calcQty"][index] = df["cumulativeQty"][index] - lowerBound
-    lowercalcIndex = index
-    break
-for index in range(len(df.index)):
-  if df["cumulativeQty"][index] >= upperBound:
-    df["calcQty"][index] = df["cumulativeQty"][index] - upperBound
-    uppercalcIndex = index
-    break
-for index in range(len(df.index)):
-  if lowercalcIndex < index < uppercalcIndex:
-    df["calcQty"][index] = df["TradeQty"][index]
-df["calcTradedValue"] = df["calcQty"] * df["TradeRate"]
-trimmedMean = df["calcTradedValue"].sum() / df["calcQty"].sum()
-print(round(trimmedMean,4))
+excludeDealSourceList = ["OutSideExchangeDifferentBroker(3)","OutSideExchangeDifferentBrokerOm(4)","OutSideExchangeOneBroker(5)","OutSideSameExchangeOneBrokerOm(6)"] # trade report types
+for year in range (2011,2020):  # create filenames based on dates
+  for month in range(1,13):
+    if int(month) < 10:
+      month = "0" + str(month)
+    for day in range(1,32):
+      if int(day) < 10:
+        day = "0" + str(day)
+      filename = str(year) + str(month) + str(day)
+      file = "me_stat_2_cdbtbramazana_"+filename+"_TR25836330_trades.csv"
+      try: # if filename doesn't exist, don't throw error just pass 
+        df = pd.read_csv(file,sep=";",usecols=["ExecutionEventNbr","Price","Quantity","Party","CounterParty","NotCleared","TradeType","DealSource"]) # only relevant columns are extracted
+        df = df[(df["Party"]!=df["CounterParty"]) & (df["NotCleared"]=="N") & (~df["DealSource"].isin(excludeDealSourceList))].reset_index(drop=True) # remove cross-trades, not-cleared trades and trade reports
+        df2 = df[df["TradeType"]=="Reversing(4)"].reset_index(drop=True)
+        cancelledTradeIDs = list(df2["ExecutionEventNbr"].drop_duplicates(keep="first"))
+        df = df[ (df["TradeType"]=="Overtaking(3)") | ((df["TradeType"]=="Standard(1)") & (~df["ExecutionEventNbr"].isin(cancelledTradeIDs)))].reset_index(drop=True) # remove cancelled trades but keep rectified trades if any exists Q: can rectify trades be also cancelled?
+        df = df.drop_duplicates("ExecutionEventNbr",keep="last").reset_index(drop=True) # remove identical trade with keeping last one based on TradeIDs
+        df = df.sort_values(["Price","Quantity"], ascending =[True,True]).reset_index(drop=True) # sort values by first rate and then volume
+        totalQty = df["Quantity"].sum()
+        trimPercent = 0.20 # this can be changed
+        lowerBound = totalQty*trimPercent
+        upperBound = totalQty*(1-trimPercent)
+        df['cumulativeQty'] = 0
+        df["calcQty"] = 0
+        df["cumulativeQty"][0] = df["Quantity"][0]
+        for index in range(1,len(df.index)):
+          df["cumulativeQty"][index] = df["cumulativeQty"][index-1] + df["Quantity"][index]
+        for index in range(len(df.index)):
+          if df["cumulativeQty"][index] >= lowerBound:
+            df["calcQty"][index] = df["cumulativeQty"][index] - lowerBound
+            lowercalcIndex = index
+            break
+        for index in range(len(df.index)):
+          if df["cumulativeQty"][index] >= upperBound:
+            df["calcQty"][index] = upperBound - df["cumulativeQty"][index-1]
+            uppercalcIndex = index
+            break
+        for index in range(len(df.index)):
+          if lowercalcIndex < index < uppercalcIndex:
+            df["calcQty"][index] = df["Quantity"][index]
+        df["calcTradedValue"] = df["calcQty"] * df["Price"] / 100
+        trimmedMean = df["calcTradedValue"].sum() / df["calcQty"].sum()
+        print("%s-%s-%s ==> %%%s trimmed-mean: %s" % (str(day),str(month),str(year),round(trimPercent*100),trimmedMean))
+        with open("output.txt","a") as f:
+          f.write("%s %s\n" %(filename, trimmedMean))  # write calculated values to output.txt
+      except:
+        pass
