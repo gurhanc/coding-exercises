@@ -1,0 +1,88 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+initialValueKamuEUR = 100
+initialValueKamuUSD = 100
+initialValueOSBAUSD = 100
+initialValueKamuEUR_b = 100
+initialValueKamuUSD_b = 100
+initialValueOSBAUSD_b = 100
+kamuEurobondUSDICE = [initialValueKamuUSD]
+kamuEurobondUSDBLOOMBERG = [initialValueKamuUSD_b]
+kamuEurobondEURICE = [initialValueKamuEUR]
+kamuEurobondEURBLOOMBERG = [initialValueKamuEUR_b]
+osbaEurobondICE = [initialValueOSBAUSD]
+osbaEurobondBLOOMBERG = [initialValueOSBAUSD_b]
+dates = ["05.09.2018","06.09.2018","07.09.2018","10.09.2018","11.09.2018","12.09.2018","13.09.2018","14.09.2018","17.09.2018","18.09.2018","19.09.2018","20.09.2018","21.09.2018","24.09.2018","25.09.2018","26.09.2018","27.09.2018","28.09.2018","01.10.2018","02.10.2018","03.10.2018"]
+indices = ["BIST-KYD KAMU EUROBOND EUR","BIST-KYD KAMU EUROBOND USD","BIST-KYD OSBA EUROBOND"]
+df = pd.read_csv("ICE-Bloomberg.csv",sep=";")
+df["ICE-market cap"] = df["ICE"] * df["NOMINAL"]
+df["BLOOMBERG-market cap"] = df["BLOOMBERG"] * df["NOMINAL"]
+constituents = {}
+constituents["BIST-KYD KAMU EUROBOND EUR"] = {}
+constituents["BIST-KYD KAMU EUROBOND USD"] = {}
+constituents["BIST-KYD OSBA EUROBOND"] = {}
+for index in indices:
+  for date in dates:
+    constituents[index][date] = list(df[(df["INDEX"] == index) & (df["TARIH"] == date)]["ISIN"])
+
+kamuEurobondEURReturns = {}
+for num in range(1,len(dates)):
+  kamuEurobondEURReturns[dates[num]] = df.loc[(df.ISIN.isin(constituents["BIST-KYD KAMU EUROBOND EUR"][dates[num]])) & (df.TARIH == dates[num])]["ICE-market cap"].sum() / df.loc[(df.ISIN.isin(constituents["BIST-KYD KAMU EUROBOND EUR"][dates[num]])) & (df.TARIH == dates[num-1])]["ICE-market cap"].sum()
+for key, value in kamuEurobondEURReturns.items():
+  initialValueKamuEUR = initialValueKamuEUR * value
+  initialValueKamuEUR = round(initialValueKamuEUR,5)
+  kamuEurobondEURICE.append(initialValueKamuEUR)
+
+kamuEurobondUSDReturns = {}
+for num in range(1,len(dates)):
+  kamuEurobondUSDReturns[dates[num]] = df.loc[(df.ISIN.isin(constituents["BIST-KYD KAMU EUROBOND USD"][dates[num]])) & (df.TARIH == dates[num])]["ICE-market cap"].sum() / df.loc[(df.ISIN.isin(constituents["BIST-KYD KAMU EUROBOND USD"][dates[num]])) & (df.TARIH == dates[num-1])]["ICE-market cap"].sum()
+for key, value in kamuEurobondUSDReturns.items():
+  initialValueKamuUSD = initialValueKamuUSD * value
+  initialValueKamuUSD = round(initialValueKamuUSD,5)
+  kamuEurobondUSDICE.append(initialValueKamuUSD)
+
+osbaEurobondReturns = {}
+for num in range(1,len(dates)):
+  osbaEurobondReturns[dates[num]] = df.loc[(df.ISIN.isin(constituents["BIST-KYD OSBA EUROBOND"][dates[num]])) & (df.TARIH == dates[num])]["ICE-market cap"].sum() / df.loc[(df.ISIN.isin(constituents["BIST-KYD OSBA EUROBOND"][dates[num]])) & (df.TARIH == dates[num-1])]["ICE-market cap"].sum()
+for key, value in osbaEurobondReturns.items():
+  initialValueOSBAUSD = initialValueOSBAUSD * value
+  initialValueOSBAUSD = round(initialValueOSBAUSD,5)
+  osbaEurobondICE.append(initialValueOSBAUSD)
+
+kamuEurobondEURReturns_b = {}
+for num in range(1,len(dates)):
+  kamuEurobondEURReturns_b[dates[num]] = df.loc[(df.ISIN.isin(constituents["BIST-KYD KAMU EUROBOND EUR"][dates[num]])) & (df.TARIH == dates[num])]["BLOOMBERG-market cap"].sum() / df.loc[(df.ISIN.isin(constituents["BIST-KYD KAMU EUROBOND EUR"][dates[num]])) & (df.TARIH == dates[num-1])]["BLOOMBERG-market cap"].sum()
+for key, value in kamuEurobondEURReturns_b.items():
+  initialValueKamuEUR_b = initialValueKamuEUR_b * value
+  initialValueKamuEUR_b = round(initialValueKamuEUR_b,5)
+  kamuEurobondEURBLOOMBERG.append(initialValueKamuEUR_b)
+
+kamuEurobondUSDReturns_b = {}
+for num in range(1,len(dates)):
+  kamuEurobondUSDReturns_b[dates[num]] = df.loc[(df.ISIN.isin(constituents["BIST-KYD KAMU EUROBOND USD"][dates[num]])) & (df.TARIH == dates[num])]["BLOOMBERG-market cap"].sum() / df.loc[(df.ISIN.isin(constituents["BIST-KYD KAMU EUROBOND USD"][dates[num]])) & (df.TARIH == dates[num-1])]["BLOOMBERG-market cap"].sum()
+for key, value in kamuEurobondUSDReturns_b.items():
+  initialValueKamuUSD_b = initialValueKamuUSD_b * value
+  initialValueKamuUSD_b = round(initialValueKamuUSD_b,5)
+  kamuEurobondUSDBLOOMBERG.append(initialValueKamuUSD_b)
+
+osbaEurobondReturns_b = {}
+for num in range(1,len(dates)):
+  osbaEurobondReturns_b[dates[num]] = df.loc[(df.ISIN.isin(constituents["BIST-KYD OSBA EUROBOND"][dates[num]])) & (df.TARIH == dates[num])]["BLOOMBERG-market cap"].sum() / df.loc[(df.ISIN.isin(constituents["BIST-KYD OSBA EUROBOND"][dates[num]])) & (df.TARIH == dates[num-1])]["BLOOMBERG-market cap"].sum()
+for key, value in osbaEurobondReturns_b.items():
+  initialValueOSBAUSD_b = initialValueOSBAUSD_b * value
+  initialValueOSBAUSD_b = round(initialValueOSBAUSD_b,5)
+  osbaEurobondBLOOMBERG.append(initialValueOSBAUSD_b)
+
+plt.plot(dates,kamuEurobondUSDICE,label="BIST-KYD KAMU EUROBOND USD (ICE)")
+plt.plot(dates,kamuEurobondUSDBLOOMBERG,label="BIST-KYD KAMU EUROBOND USD (BLOOMBERG)")
+plt.plot(dates,kamuEurobondEURICE,label="BIST-KYD KAMU EUROBOND EUR (ICE)")
+plt.plot(dates,kamuEurobondEURBLOOMBERG,label="BIST-KYD KAMU EUROBOND EUR (BLOOMBERG)")
+plt.plot(dates,osbaEurobondICE,label="BIST-KYD OSBA EUROBOND USD (ICE)")
+plt.plot(dates,osbaEurobondBLOOMBERG,label="BIST-KYD OSBA EUROBOND USD (BLOOMBERG)")
+plt.legend(loc='best')
+plt.xticks([],dates)
+plt.xlabel("5/09/18 - 03/10/2018")
+plt.ylabel("endeks değeri")
+plt.savefig("plot.PNG")
+plt.clf()
