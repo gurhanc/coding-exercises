@@ -1,0 +1,45 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+from itertools import combinations
+
+# Complete the alternate function below.
+def alternate(s):
+    xList = []
+    finalList = []
+    for letter in s:
+        xList.append(letter)
+    xListCopy = xList[:]
+    allCombinations = list(set(combinations(xList,2)))
+    for combination in allCombinations:
+        xList = xListCopy.copy()
+        for letter in xList:
+            if letter not in combination:
+                xList = [i for i in xList if i != letter]
+        signal = False
+        for indx in range(1,len(xList)):
+            if xList[indx] == xList[indx-1]:
+                signal = True
+        if signal == False:
+            if len(xList) > len(finalList):
+                finalList = xList
+    return len(finalList)
+                
+            
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    l = int(input().strip())
+
+    s = input()
+
+    result = alternate(s)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
