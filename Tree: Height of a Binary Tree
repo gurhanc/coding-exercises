@@ -1,0 +1,8 @@
+def height(root):  # if there is no further node on left or right function will return 0
+    leftHeight = 0
+    rightHeight = 0
+    if root.left != None:
+        leftHeight = 1 + height(root.left)
+    if root.right != None:
+        rightHeight = 1 + height(root.right)
+    return max(leftHeight, rightHeight)
