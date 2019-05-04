@@ -1,0 +1,21 @@
+def makeAnagram(a, b):
+    deletion = 0
+    aList = []
+    bList = []
+    commonLetters = []
+    for x in a:
+        aList.append(x)
+    for y in b:
+        bList.append(y)
+    for letter in aList:
+        if letter not in bList:
+            deletion +=1
+            print(letter)
+        elif letter not in commonLetters:
+            deletion += abs(aList.count(letter)-bList.count(letter))
+            commonLetters.append(letter)
+    for letter in bList:
+        if letter not in commonLetters:
+            deletion += 1
+            print(letter)
+    return deletion
