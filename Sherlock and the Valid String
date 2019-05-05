@@ -1,0 +1,10 @@
+def isValid(s):
+    c = Counter(s)
+    if max(list(c.values())) == min(list(c.values())):
+        return "YES"
+    elif (list(c.values()).count(max(list(c.values()))) == 1) and (max(list(c.values())) - min(list(c.values())) == 1):
+        return "YES"
+    elif (min(list(c.values())) == 1) and (list(c.values()).count(min(list(c.values()))) == 1) and (len(set(c.values())) == 2):
+        return "YES" 
+    else:
+        return "NO"
